@@ -5,6 +5,7 @@ import {ReactComponent as Settings} from '../assets/navigation/settings_icon.svg
 import {ReactComponent as Weather} from '../assets/navigation/weather_icon.svg';
 import { useAppDispatch, useAppSelector} from '../service/hooks/reduxHooks';
 import { changeCurrentPage} from '../service/store/mainSlice';
+import {useState} from 'react'
 
 type SVGimg = React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
 type itemTuple = [SVGimg, string];
@@ -18,6 +19,8 @@ const Nav: React.FC = () => {
 
     const dispatch = useAppDispatch();
     const currentPage = useAppSelector(state => state.currentPage);
+    const screenWidth = useAppSelector(state => state.screenWidth)
+    const [isMenuOpen, setMenuStatus] = useState(false)
     const onClickHandler = (value:string) => {
         dispatch(changeCurrentPage(value))
     }
@@ -29,7 +32,7 @@ const Nav: React.FC = () => {
                  onClick={() => onClickHandler(name)}>
                 <Img className={`navigation_image ${(currentPage === name) ? 'navigation_image-active': ''}`} 
                      fill={(name === 'Weather') ? '#A29993' : 'none'}
-                     style={(currentPage === 'Map') ? {"fill": 'none'} : undefined}/>
+                     style={(currentPage === 'Map' && name != 'Weather') ? {"fill": 'none'} : undefined}/>
                 <div>{name}</div>
             </div>
         )
@@ -37,10 +40,17 @@ const Nav: React.FC = () => {
     return (
         <>
             <nav className="navigation">
-                <div className="logo">
+                <div className="logo" onClick={() => setMenuStatus(!isMenuOpen)}>
                     <img src={logo} alt="logo"/>
                 </div>
-                {data.map((item, pos) => listItemCreator(item[0], item[1], pos))}
+                {(screenWidth > 576) ?
+
+                <>{data.map((item, pos) => listItemCreator(item[0], item[1], pos))}</>: 
+
+                <div className={(isMenuOpen)? "navigation__list navigation__list--active": "navigation__list"}>
+                    {data.map((item, pos) => listItemCreator(item[0], item[1], pos))}
+                </div>
+                }
             </nav>
         </>
     )

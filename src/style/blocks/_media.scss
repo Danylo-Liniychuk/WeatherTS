@@ -202,6 +202,10 @@ $ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     .map {
         min-height: 80%;
         z-index: 1;
+        &_forecast {
+            width: 100%;
+            align-items:baseline;
+        }
         &_wrapper {
             margin-top: 20px;
             min-height: 60%;
@@ -209,7 +213,7 @@ $ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             overflow-y:visible;
             .city_item-map {
                 width: 100%;
-                height: 30%;
+                height: 17%;
                 .city_info {
                     width: 60%;
                     justify-content: space-between;

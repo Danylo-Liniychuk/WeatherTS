@@ -1,8 +1,12 @@
 import SwitcherItem from "./SwitchersItem"
+import { useAppSelector } from "../service/hooks/reduxHooks"
 
 
 
 const Switchers: React.FC = () => {
+    const {location,time,notifications} = useAppSelector(state => state.toggle);
+
+
     return(
         <>
             <div className="notifications">
@@ -11,7 +15,7 @@ const Switchers: React.FC = () => {
                     <div className="notifications_text">
                         Notifications<br/><span>Be aware of the weather</span>
                     </div>
-                    <SwitcherItem switchStatus={true} name="notifications"/>
+                    <SwitcherItem switchStatus={notifications} name="notifications"/>
                 </div>
             </div>
             <div className="general">
@@ -21,14 +25,14 @@ const Switchers: React.FC = () => {
                         <div className="general_text">
                             12-Hours Time
                         </div>
-                        <SwitcherItem switchStatus={false} name="time"/>
+                        <SwitcherItem switchStatus={time} name="time"/>
                     </div>
                     <div className="general_divider"></div>
                     <div className="general_item">
                         <div className="general_text">
                             Location<br/><span>Get weather of tour location</span>
                         </div>
-                        <SwitcherItem switchStatus={true} name="location"/>
+                        <SwitcherItem switchStatus={location} name="location"/>
                     </div>
                 </div>
             </div>

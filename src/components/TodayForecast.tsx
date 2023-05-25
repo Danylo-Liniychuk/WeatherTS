@@ -1,5 +1,6 @@
 import TodayForecastItem from "./TodayForecastItem"
 import { v1 } from "uuid"
+import { useAppSelector } from "../service/hooks/reduxHooks"
 
 
 interface todayForecastProps {
@@ -7,11 +8,11 @@ interface todayForecastProps {
 }
 
 const Today: React.FC<todayForecastProps>= (props) => {
-
+    const currentPage = useAppSelector(state => state.currentPage)
     return(
         <>
-            <div className='forecast'>
-                <h3 id={undefined}>TODAY'S FORECAST</h3>
+            <div className={(currentPage === 'Cities') ? "forecast forecast-city" : 'forecast'}>
+            <h3 id = {(currentPage === 'Cities') ? "todayh3" : undefined}>TODAY'S FORECAST</h3>
                 <div className="forecast_wrapper">
                     {props.data.map(el => <TodayForecastItem data={el} key={v1()}/>)}
                 </div>

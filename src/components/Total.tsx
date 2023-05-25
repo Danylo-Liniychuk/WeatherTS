@@ -1,12 +1,12 @@
 import React from "react";
 import sunny from '../assets/icons/sunny.svg';
-import {useState} from 'react'
+import { useAppSelector } from "../service/hooks/reduxHooks";
 
 const Total: React.FC =  () => {
-    const [totalPage, setTotalPage] = useState('cities')
+    const currentPage = useAppSelector(state => state.currentPage)
     return(
         <>
-            <div className={(totalPage === 'Cities') ? 'total total-padding0' : 'total'}>
+            <div className={(currentPage === 'Cities') ? 'total total-padding0' : 'total'}>
                 <div className="total_forecast">
                     <div className="total_city">
                         <h2>Madrid</h2>

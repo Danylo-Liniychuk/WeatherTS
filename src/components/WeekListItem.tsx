@@ -1,20 +1,21 @@
 import { weekTuple } from "../pages/MainPage"
-
+import sunny from '../assets/icons/sunny.svg';
 
 interface props {
-    data: weekTuple
+    data: [string, number, number] ///вернуть weekTuple
 }
 
 const WeekListItem:React.FC<props> = (props) => {
 
-    const [day, img, maxTemp, minTemp] = props.data;
+
+    const [day, maxTemp, minTemp] = props.data;
 
     return (
         <>
             <div className="weekForecast_item">
                 <div className='weekForecast_day'>{day}</div>
                 <div className="weekForecast_status">
-                    <img src={img} alt="status"/>
+                    <img src={sunny} alt="status"/>
                     Sunny
                 </div>
                 <div className="weekForecast_temp"><span>{maxTemp}</span>/{minTemp}</div>
