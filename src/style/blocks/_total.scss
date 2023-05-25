@@ -1,0 +1,33 @@
+.total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 30%;
+    padding: 20px 40px 10px 40px;
+    &-padding0 {
+        width: 100%;
+        padding: 10px 0 10px 0;
+    }
+    &_forecast {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-direction: column;
+        h2{
+            color: rgb(221, 224, 228);
+            line-height: 24px;
+            font-size: 40px;
+            font-weight: 600;
+        }
+        color: rgb(147, 153, 162);
+    }
+    &_temperature{
+
+        color: rgb(221, 224, 228);
+        font-size: 64px;
+        font-weight: 600;
+    }
+    img {
+        height: 100%;
+    }
+}

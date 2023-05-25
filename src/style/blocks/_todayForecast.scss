@@ -1,0 +1,54 @@
+.forecast {
+    height: 25%;
+    background-color: rgb(32, 43, 59);
+    border-radius: 16px;
+    padding: 20px 30px 20px 30px;
+    &-city {
+        padding: 10px 0 10px 0;
+        background-color: inherit;
+        width: 100%;
+        .forecast_item {
+            width: 30%;
+        }
+    }
+    h3 {
+        font-size: 12px;
+        font-weight: 600;
+        color: rgb(147, 153, 162);
+    }
+    &_wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 90%;
+    }
+    &_item {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+        &-city {
+            width: 30%;
+        }
+        img {
+            height: 35%;
+        }
+    }
+    &_temperature {
+        font-size: 24px;
+        font-weight: 600;
+        color: rgb(221, 224, 228);
+    }
+    &_time{
+        font-size: 14px;
+        font-weight: 600;
+        color: rgb(147, 153, 162);;
+    }
+}
+
+#todayh3 {
+    display: block;
+    margin-bottom: 10px;
+}

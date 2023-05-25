@@ -1,0 +1,464 @@
+$ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+@media (max-width: 992px) {
+    .navigation{
+        width: 8%;
+        &_item {
+            font-size: 14px;
+        }
+    }
+    .weekForecast {
+        &_wrapper {
+            padding: 20px 15px 20px 15px;
+            &-city {
+                padding: 15px 0 20px 0;
+            }
+        }
+        &_temp {
+            font-size: 14px;
+        }
+        &_day {
+            font-size: 13px;
+        }
+        &_status {
+            width: 40%;
+        }
+        &_item {
+            height: 13%;
+            img{
+                width: 40%;
+            }
+        }
+    }
+    .cityForecast {
+        justify-content: space-between;
+        &_wrapper {
+            justify-content: space-between;
+        }
+        .total{
+            img {
+                height: 75%;
+            }
+            &_city {
+                font-size: 14px;
+                h2 {
+                    font-size: 32px;
+                }
+            }
+            &_temperature {
+                font-size: 38px;
+            }
+        }
+        .forecast{
+            &-city {
+                margin-bottom: 20px;
+            }
+            &_item {
+                width: 30%;
+                img {
+                    height: 40%;
+                }
+            }
+            &_temperature{
+                font-size: 20px;
+            }
+            &_time{
+                font-size: 12px;
+            }
+        }
+    }
+    .map {
+        &_wrapper {
+            .city_item-map {
+                padding: 20px 10px 20px 10px;
+                height: 20%;
+                .city_info {
+                    img {
+                        width: 35%;
+                    }
+                    div {
+                        font-size: 24px;
+                        h3 {
+                            font-size: 17px;
+                        }
+                    }
+                }
+                .city_temp {
+                    font-size: 30px;
+                }
+            }
+
+        }
+    }
+    .advertise {
+        &_divider {
+            margin: 0;
+        }
+        &_promo {
+            h2 {
+                font-size: 28px;
+            }
+            h3 {
+                font-size: 20px;
+            }
+            li {
+                font-size: 13px;
+            }
+        }
+        &_price{
+            height: 20%;
+            font-size: 32px;
+        }
+    }
+    
+}
+@media (max-width: 768px) {
+    .App {
+        padding: 10px 10px 10px 10px !important;
+    }
+    .navigation{
+        width: 13%;
+        &_item {
+            font-size: 14px;
+        }
+    }
+    .contentBox{ 
+        width: 85%;
+        padding-right: 1%;
+        overflow-y: auto;
+        &-withoutJC{
+            width: 55%;
+        }
+    }
+    .total {
+        padding: 20px 20px 10px 20px;
+        &-padding0 {
+            padding: 0;
+            img {
+                height: 60%;
+            }
+        }
+        &_forecast {
+            h2 {
+                font-size: 35px;
+            }
+        }
+        &_temperature {
+            font-size: 40px;
+        }
+
+    }
+    .weekForecast {
+        width: 100%;
+        min-height: 80%;
+        &_wrapper {
+            padding: 20px 20px 20px 20px;
+            &-city {
+                padding: 20px 0 20px 0;
+            }
+        }
+        &_temp {
+            font-size: 15px;
+        }
+        &_day {
+            font-size: 14px;
+        }
+        &_status {
+            width: 40%;
+        }
+        &_item {
+            height: 13%;
+            img{
+                width: 20%;
+            }
+        }
+    }
+    .forecast {
+        margin-bottom: 20px;
+        height: 30%;
+    }
+    .air {
+        margin-bottom: 20px;
+    }
+    .city {
+        &_item{ 
+            height: 20%;
+        }
+        &_info {
+            div {
+                font-size: 22px;
+            }
+            img {
+                margin-right: 30px;
+            }
+        }
+        &_temp {
+            font-size: 30px;
+        }
+        &_wrapper{
+            width: 100%;
+        }
+    }
+    .map {
+        min-height: 80%;
+        z-index: 1;
+        &_wrapper {
+            margin-top: 20px;
+            min-height: 60%;
+            padding: 0;
+            overflow-y:visible;
+            .city_item-map {
+                width: 100%;
+                height: 30%;
+                .city_info {
+                    width: 60%;
+                    justify-content: space-between;
+                    div {
+                        font-size: 30px;
+                    }
+                }
+                .city_temp {
+                    font-size: 36px;
+                }
+            }
+        }
+    }
+    .cityForecast{
+        &_wrapper {
+            padding: 0 20px 0 0;
+        }
+        .total_temperature {
+            font-size: 34px;
+        }
+        .weekForecast {
+            min-height: 30%;
+            &_status {
+                width: 40%;
+                font-size: 12px;
+                img{
+                    margin-right: 0;
+                    width: 30%;
+                }
+            }
+            &_temp {
+                font-size: 14px;
+            }
+        }
+        .forecast_time {
+            text-align: center;
+        }
+        .forecast_item {
+            img {
+                height: 30%;
+            }
+        }
+        .total {
+            &_temperature {
+                font-size: 28px;
+            }
+            &_city {
+                h2 {
+                    font-size: 24px;
+                }
+            }
+            img {
+                height: 50%;
+            }
+        }
+    }
+    .advertise {
+        width: 100%;
+        margin-top: 20px;
+        &_wrapper {
+            flex-direction: row;
+        }
+        &_promo, .sign {
+            width: 49%;
+            height: 100%;
+            h2 {
+                font-size: 22px;
+            }
+
+            h3 {
+                font-size: 16px;
+            }
+        }
+        &_price {
+            font-size: 26px;
+            height: 25%;
+            height: 40px;
+        }
+        &_divider {
+            display: none;
+        }
+        .sign_button {
+            height: 40px;
+            font-size: 20px;    
+        }
+    }
+}
+@media (max-width: 575px) {
+    .navigation { 
+        width: 20%;
+        background-color:transparent;
+        padding-top: 0;
+        &_item {
+            svg {
+                height: 40%;
+            }
+        }
+        .logo {
+            height: 40px;
+            width: 40px;
+            margin-bottom: 0;
+        }
+        &__list {
+            padding-top: 30px;
+            position: absolute;
+            top: 10px;
+            z-index: 10;
+            display: flex;
+            height: 98%;
+            width: 25%;
+            border-radius: 24px;
+            background-color: rgb(32, 43, 59);
+            flex-direction: column;
+            justify-content: space-around;
+            transform: translate(-150%, 0);
+            transition: $ease;
+            &--active {
+              transform: translate(0, 0);
+            }
+        }
+    }
+    .air {
+        padding: 20px;
+        height: 40%;
+        &_header {
+            height: 25%;
+            align-items: baseline;
+            button {
+                width: 80px;
+            }
+        }
+        &_wrapper {
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        &_title {
+            &::before {
+                z-index: 0;
+            }
+        }
+    }
+
+    .contentBox{
+        width: 100%;
+        padding-right: 1%;
+        overflow-y: auto;
+        @include hiddenScroll;
+        .search {
+            display: flex;
+            input {
+                width: 80%;
+            }
+        }
+        .back {
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background-color: rgba(0,0,0,.5);
+            top: 0;
+            left: 0;
+            position: absolute;
+        }
+    }
+    .forecast {
+        padding: 20px;
+        &_temperature{
+            font-size: 22px;
+        }
+        &_time {
+            font-size: 12px;
+        }
+        .divider {
+            &:nth-child(2), &:nth-child(4){
+                display: none;
+            }
+        }
+        &_item{
+            img{
+                height: 33%;
+            }
+            &:nth-child(1), &:nth-child(3)  {
+                display: none;
+            }
+        }
+
+    }
+    .city{
+        &_wrapper {
+            width: 101%;
+        }
+        &_mini {
+            height: 20%;
+        }
+        &_info {
+            img {
+                height: 60px;
+            }
+        }
+        &_item {
+            transition: height 0.5s ease-in-out;;
+            &-active {
+                height: 90%;
+            }
+        }
+    }
+    .cityForecast {
+        width: 100%;
+        height: 80%;
+        align-items: baseline;
+        &_wrapper {
+            padding: 0;
+            height: 100%;
+        }
+        .forecast {
+            .divider {
+                &:nth-child(2), &:nth-child(4){
+                    display: block;
+                }
+            }
+            &-city {
+                margin-bottom: 0;
+                height: 40%;
+                padding: 10px 0 20px 0;
+            }
+            &_item {
+                img {
+                    width: 30%;
+                }
+                &:nth-child(1),&:nth-child(2),&:nth-child(3) {
+                    display: flex;
+                }
+            }
+        }
+        .weekForecast {
+            height: 58%;
+            &_status {
+                width: 30%;
+                img {
+                    width: 30%;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+}
+@media (max-width: 400px) {
+    .advertise {
+        &_desc, .sign_button  {
+            font-size: 18px;
+        }
+    }
+}

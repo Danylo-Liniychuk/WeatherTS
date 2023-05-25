@@ -1,25 +1,47 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "DL Weather",
+  "short_name": "Weather PWA",
+  "theme_color": "#202b3b",
+  "background_color": "#0b131e",
+  "display": "standalone",
+  "orientation": "portrait",
+  "start_url": ".",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "icons/16.png",
+      "sizes": "16x16"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
+      "src": "icons/32.png",
+      "sizes": "32x32"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
+      "src": "icons/57.png",
+      "sizes": "57x57"
+    },
+    {
+      "src": "icons/64.png",
+      "sizes": "64x64"
+    },
+    {
+      "src": "icons/114.png",
+      "sizes": "114x114"
+    },
+    {
+      "src": "icons/128.png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "icons/144.png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "icons/256.png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "icons/512.png",
       "sizes": "512x512"
     }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  ]
 }

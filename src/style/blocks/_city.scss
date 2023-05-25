@@ -1,0 +1,68 @@
+.city {
+    &_wrapper {
+        padding-right: 1%;
+        margin-top: 20px;
+        width: 101%;
+        height: 100%;
+        overflow-y: auto;
+        @include scroll;
+    }
+    &_mini {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        &-active {
+            height: 40%;
+        }
+    }
+    &_item {
+        margin-top: 15px;
+        padding: 20px 30px 20px 30px;
+        width: 100%;
+        height: 25%;
+        border-radius: 24px;
+        background-color: rgb(32, 43, 59);
+        &:first-child {
+            margin-top: 0;
+        }
+        &-map {
+            padding: 20px;
+            width: 98%;
+            height: 20%; 
+            .city_temp {
+                font-size: 34px;
+            }
+            .city_info {
+                img {
+                    margin-right: 10%;
+                }
+                div {
+                    font-size: 28px;
+                }
+            }
+        }
+    }
+    &_info{
+        display: flex;
+        div{
+            color: rgb(196, 202, 211);
+            font-size: 32px;
+            font-weight: 600;
+        }
+        h3 {
+            color: rgb(147, 153, 162);
+            font-weight: 400;
+            font-size: 20px;
+        }
+        img {
+            width: 40%;
+            margin-right: 45px;
+        }
+    }
+    &_temp {
+        color: rgb(196, 202, 211);
+        font-size: 40px;
+    }
+
+}

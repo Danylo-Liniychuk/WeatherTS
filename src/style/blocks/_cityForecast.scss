@@ -1,0 +1,14 @@
+.cityForecast {
+    display: flex;
+    align-items: flex-end;
+    width: 30%;
+    &_wrapper {
+        padding: 0 20px 0 20px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        height: 90%;
+    }
+}
