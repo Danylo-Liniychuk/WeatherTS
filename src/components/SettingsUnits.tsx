@@ -23,7 +23,7 @@ const Units: React.FC = () => {
                                               {name:'Inches', val: 'inch'}],
           distance: Array<RadioData> = [ {name:'Kilometers', val: 'km'},
                                          {name:'Miles', val: 'miles'}]
-    const settings = useAppSelector(state => state.settings);
+    const settings = useAppSelector(state => state.mainReducer.settings);
     return(
         <>
             <h2>Units</h2>

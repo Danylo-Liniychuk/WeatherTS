@@ -5,7 +5,7 @@ import Switchers from "../components/Switchers";
 import { useAppSelector } from "../service/hooks/reduxHooks";
 
 const SettingsPage: React.FC = () => {
-    const screenWidth = useAppSelector(state => state.screenWidth)
+    const screenWidth = useAppSelector(state => state.mainReducer.screenWidth)
     return(
         <>
             <div className="contentBox">

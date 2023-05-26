@@ -1,27 +1,22 @@
-import { weekArr } from "../pages/MainPage"
 import { v1 } from 'uuid';
+import Spinner from "./Spinner";
 import WeekListItem from "./WeekListItem";
 import { useAppSelector } from "../service/hooks/reduxHooks";
 
 
-interface weekForecastProps{
-    data: weekArr;
-}
-
-const Week: React.FC<weekForecastProps> = (props) => {
-    const currentPage = useAppSelector(state => state.currentPage);
-    const mainLoading = useAppSelector(state => state.mainLoading);
+const Week: React.FC = () => {
+    const currentPage = useAppSelector(state => state.mainReducer.currentPage);
+    const mainLoading = useAppSelector(state => state.forecastReducer.weekForecastLoading);
     const days: Array<string> = ['Sun','Mon','Tue', 'Wed', 'Thu', 'Fri', 'Sat', ];
-    const daily = useAppSelector(state => state.dailyWeek)
+    const daily = useAppSelector(state => state.forecastReducer.dailyWeekForecast)
     const daysOfTheWeek: Array<string> = daily?.time.map (el => {
-        const date:number = new Date(el).getDay();
-        return days[date];
+            const date:number = new Date(el).getDay();
+            return days[date];
     })
-    console.log(daysOfTheWeek)
     const createListItem = () => {
         const listItems = [];
         for(let i = 0; i < 7; i++){
-            const item = <WeekListItem data={[daysOfTheWeek[i], daily.temperature_2m_max[i], daily.temperature_2m_min[i]]} key={v1()}/>
+            const item = <WeekListItem data={[daysOfTheWeek[i], Math.round(daily.temperature_2m_max[i]), Math.round(daily.temperature_2m_min[i])]} key={v1()}/>
             listItems.push(item)
         }
         return listItems;
@@ -30,7 +25,7 @@ const Week: React.FC<weekForecastProps> = (props) => {
         <article className={(currentPage === 'Cities') ? 'weekForecast weekForecast-city': 'weekForecast'}>
             <div className={(currentPage === 'Cities') ? 'weekForecast_wrapper weekForecast_wrapper-city': 'weekForecast_wrapper'}>
             <div className="weekForecast_title"><h3>{(currentPage === 'Cities') ? '3-DAY FORECAST': '7-DAY FORECAST'}</h3></div>
-                {(!mainLoading) ? createListItem() : null}
+                {(!mainLoading) ? createListItem() : <Spinner/>}
             </div>
         </article>
     )

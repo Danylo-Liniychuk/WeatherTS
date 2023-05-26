@@ -3,7 +3,7 @@ import { v1 } from "uuid";
 import City from "../components/CityItem";
 import CityForecast from "../components/CityForecast";
 import { useAppSelector } from "../service/hooks/reduxHooks";
-import { stat } from "fs";
+
 
 export interface cityInfo {
     name: string,
@@ -13,7 +13,7 @@ export interface cityInfo {
 
 const CitiesPage: React.FC = () => {
 
-    const screenWidth = useAppSelector(state => state.screenWidth)
+    const screenWidth = useAppSelector(state => state.mainReducer.screenWidth)
     const data:Array<cityInfo> = [{name: "Madrid", time: '10:23', temp: 31},
                   {name: "Madrid", time: '10:23', temp: 31},
                   {name: "Madrid", time: '10:23', temp: 31},

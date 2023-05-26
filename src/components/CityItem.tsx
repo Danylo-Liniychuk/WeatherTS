@@ -12,8 +12,8 @@ interface cityProps{
 const City: React.FC<cityProps> = (props) => {
     const {name, time, temp} = props.data;
     const [isMoreShown, setMoreStatus] = useState(false)
-    const currentPage = useAppSelector(state => state.currentPage);
-    const screenWidth = useAppSelector(state => state.screenWidth);
+    const currentPage = useAppSelector(state => state.mainReducer.currentPage);
+    const screenWidth = useAppSelector(state => state.mainReducer.screenWidth);
 
     const createItemClass = () => {
         return currentPage === 'Map'

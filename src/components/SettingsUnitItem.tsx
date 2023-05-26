@@ -1,8 +1,8 @@
 import { RadioData } from "./SettingsUnits"
 import { v1 } from "uuid"
-import { changeUnit } from "../service/store/mainSlice"
+import { changeUnit } from "../service/slices/mainSlice"
 import { useAppDispatch } from "../service/hooks/reduxHooks"
-import type { SettingsProp } from "../service/store/mainSlice"
+import type { SettingsProp } from "../service/slices/mainSliceTypes"
 
 interface SettingItemData {
     title: string,

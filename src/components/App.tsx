@@ -6,8 +6,9 @@ import CitiesPage from '../pages/CitiesPage';
 import SettingsPage from '../pages/SettingsPage';
 import Nav from './Navigation';
 import MapPage from '../pages/MapPage';
-import { changeScreenWidth, addGeolocation } from '../service/store/mainSlice';
-import type { Point } from '../service/store/mainSlice';
+import { changeScreenWidth } from '../service/slices/mainSlice';
+import { addGeolocation } from '../service/slices/forecastSlice';
+import type { Point } from '../service/slices/mainSlice';
 
 import "../style/style.scss";
 import 'leaflet/dist/leaflet.css';
@@ -15,8 +16,8 @@ import 'leaflet/dist/leaflet.css';
 
 
 function App() {
-  const currentPage = useAppSelector(state => state.currentPage),
-        screenWidth = useAppSelector(state => state.screenWidth),
+  const currentPage = useAppSelector(state => state.mainReducer.currentPage),
+        screenWidth = useAppSelector(state => state.mainReducer.screenWidth),
         dispatch = useAppDispatch();
 
 

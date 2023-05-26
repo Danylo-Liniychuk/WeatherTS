@@ -13,7 +13,7 @@ export interface cityInfo {
 
 
 const MapPage: React.FC = () => {
-    const screenWidth = useAppSelector(state => state.screenWidth)
+    const screenWidth = useAppSelector(state => state.mainReducer.screenWidth)
     const data:Array<cityInfo> = [{name: "Madrid", time: '10:23', temp: 31},
                   {name: "Madrid", time: '10:23', temp: 31},
                   {name: "Madrid", time: '10:23', temp: 31},

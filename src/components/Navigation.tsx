@@ -4,7 +4,7 @@ import {ReactComponent as Map} from '../assets/navigation/map_icon.svg';
 import {ReactComponent as Settings} from '../assets/navigation/settings_icon.svg';
 import {ReactComponent as Weather} from '../assets/navigation/weather_icon.svg';
 import { useAppDispatch, useAppSelector} from '../service/hooks/reduxHooks';
-import { changeCurrentPage} from '../service/store/mainSlice';
+import { changeCurrentPage} from '../service/slices/mainSlice';
 import {useState} from 'react'
 
 type SVGimg = React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
@@ -18,8 +18,8 @@ const Nav: React.FC = () => {
                                     [Settings, 'Settings']];
 
     const dispatch = useAppDispatch();
-    const currentPage = useAppSelector(state => state.currentPage);
-    const screenWidth = useAppSelector(state => state.screenWidth)
+    const currentPage = useAppSelector(state => state.mainReducer.currentPage);
+    const screenWidth = useAppSelector(state => state.mainReducer.screenWidth)
     const [isMenuOpen, setMenuStatus] = useState(false)
     const onClickHandler = (value:string) => {
         dispatch(changeCurrentPage(value))

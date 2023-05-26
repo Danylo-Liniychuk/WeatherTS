@@ -4,40 +4,23 @@ import Week from "../components/WeekForecast";
 import sunny from '../assets/icons/sunny.svg';
 import Today from "../components/TodayForecast";
 import Air from "../components/AirConditions";
+import Spinner from "../components/Spinner";
 import { useAppSelector, useAppDispatch} from "../service/hooks/reduxHooks";
 import { useEffect } from "react";
-import { FetchMainForecast } from "../service/store/mainSlice";
+import { fetchWeekForecast, fetchTodaysForecast } from "../service/slices/forecastSlice";
 
-export type weekTuple = [string, string, number, number]
-export type weekArr = Array<weekTuple>;
 
 const MainPage: React.FC = () => {
-    const screenWidth = useAppSelector(state => state.screenWidth);
-    const coords = useAppSelector(state => state.geolocation);
+    const screenWidth = useAppSelector(state => state.mainReducer.screenWidth),
+          coords = useAppSelector(state => state.forecastReducer.geolocation),
+          hourly = useAppSelector(state => state.forecastReducer?.todayHourly);
+    const time = hourly ? hourly.time.map(el => el.slice(11)) : [];
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        if(coords) {
-            dispatch(FetchMainForecast())
-        }
-
+        dispatch(fetchWeekForecast());
+        dispatch(fetchTodaysForecast());
     }, [coords])
-
-
-    const arrToday: Array<Array<string>> = [['6:00', '25', sunny],
-                                            ['6:00', '25', sunny],
-                                            ['6:00', '25', sunny],
-                                            ['6:00', '25', sunny],
-                                            ['6:00', '25', sunny],
-                                            ['6:00', '25', sunny]];
-
-    const weakArr: weekArr = [['Today', sunny, 36, 22],
-                                ['Today', sunny, 36, 22],
-                                ['Today', sunny, 36, 22],
-                                ['Today', sunny, 36, 22],
-                                ['Today', sunny, 36, 22],
-                                ['Today', sunny, 36, 22],
-                                ['Today', sunny, 36, 22]];
     
     return(
         <>
@@ -47,11 +30,11 @@ const MainPage: React.FC = () => {
                     <input type="text" placeholder="Search for cities"/>
                 </div>
                 <Total/>
-                <Today data={arrToday} />
+                {hourly ? <Today time={time} temperature={hourly.temperature_2m} weatherCode={hourly.weathercode} /> : <Spinner/>}
                 <Air/>
-                {(screenWidth <= 768) ? <Week data={weakArr}/> : null}
+                {(screenWidth <= 768) ? <Week/> : null}
            </div>
-           {(screenWidth > 768) ? <Week data={weakArr}/> : null}
+           {(screenWidth > 768) ? <Week/> : null}
         </>
     )
 }
