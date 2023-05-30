@@ -1,5 +1,5 @@
 import type { TodayForecastProps } from "./TodayForecast";
-
+import { selectImageByCode } from "../service/helpers";
 
 interface ItemProps {
     time: string;
@@ -9,11 +9,12 @@ interface ItemProps {
 
 const TodayForecastItem: React.FC<ItemProps> = (props) => {
     const {time, temperature, weatherCode} = props;
+    const image = selectImageByCode(weatherCode);
     return(
         <>
             <div className="forecast_item">
                 <div className="forecast_time">{time}</div>
-                <img src={'https://res.cloudinary.com/dphnruwkk/image/upload/v1685096835/weather_icons/reshot-icon-rain-548NGEBKCJ_vvjdwj.svg'} alt="status"/>
+                <img src={image[0]} alt="status"/>
                 <div className="forecast_temperature">{temperature}&#176;</div>
             </div>
             <div className="divider"></div>

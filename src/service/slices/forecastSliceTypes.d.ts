@@ -1,3 +1,5 @@
+import { Point } from "./mainSlice";
+
 export interface WeekForecastResponse { // Interfaces for responses
     latitude: number;
     longitude: number;
@@ -13,6 +15,15 @@ export interface WeekForecastResponse { // Interfaces for responses
         weathercode: string;
     }
     daily: DailyWeekForecast;
+    hourly: HourlyDayForecast;
+    hourly_units?: {
+        time: string;
+        temperature_2: string;
+        weathercode: string;
+    };
+    current_weather: CurrentWeather;
+
+
 }
 
 interface OneDayForecastResponse {
@@ -55,6 +66,8 @@ interface ReverseGeocodingResponse {
         road: string;
         town: string;
         city: string;
+        village: string;
+        locality: string;
         municipality: string;
         district: string;
         state: string;
@@ -84,6 +97,7 @@ export interface DailyWeekForecast {
     temperature_2m_max: Array<number>;
     temperature_2m_min: Array<number>;
     weathercode: Array<number>;
+    precipitation?: number[];
 }
 
 export interface CurrentWeather{
@@ -95,7 +109,21 @@ export interface CurrentWeather{
     time: string;
 }
 
+export interface OneCityForecast {
+    weathercode: number;
+    name: string;
+    temperature: number;
+    coords: Point;
+}
 
+
+export interface CityWeekForecast {
+    name?: string;
+    temperature?: number;
+    weatherCode?:number;
+    hourly: HourlyDayForecast;
+    threeDays: DailyWeekForecast;
+}
 
 
 

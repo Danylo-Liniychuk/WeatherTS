@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import forecastReducer from '../slices/forecastSlice';
 import mainReducer from "../slices/mainSlice";
+import geocodingReducer from "../slices/geocodingSlice";
 
 
 const store = configureStore({
-    reducer: {mainReducer, forecastReducer},
+    reducer: {mainReducer, forecastReducer, geocodingReducer},
     devTools: process.env.NODE_ENV !== 'production',
 })
  

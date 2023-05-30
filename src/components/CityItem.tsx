@@ -1,19 +1,20 @@
-import { useAppSelector } from "../service/hooks/reduxHooks"
+import { useAppSelector, useAppDispatch } from "../service/hooks/reduxHooks"
 import {useState} from 'react'
-import { cityInfo } from "../pages/CitiesPage";
-import sunny from '../assets/icons/sunny.svg';
+import { selectImageByCode } from "../service/helpers";
+import { addGeolocation, fetchOneCityWeekForecast} from "../service/slices/forecastSlice";
 import CityForecast from "./CityForecast";
+import type { OneCityForecast } from "../service/slices/forecastSliceTypes";
 
-
-interface cityProps{
-    data: cityInfo
+interface CityProps extends OneCityForecast {
+    cities: OneCityForecast[]
 }
 
-const City: React.FC<cityProps> = (props) => {
-    const {name, time, temp} = props.data;
+const City: React.FC<CityProps> = (props) => {
+    const {name, temperature, weathercode, coords, cities} = props;
     const [isMoreShown, setMoreStatus] = useState(false)
     const currentPage = useAppSelector(state => state.mainReducer.currentPage);
     const screenWidth = useAppSelector(state => state.mainReducer.screenWidth);
+    const dispatch = useAppDispatch();
 
     const createItemClass = () => {
         return currentPage === 'Map'
@@ -24,7 +25,8 @@ const City: React.FC<cityProps> = (props) => {
       };
     
     const handleMoreStatus = () => {
-        setMoreStatus(!isMoreShown)
+        setMoreStatus(!isMoreShown);
+        dispatch(fetchOneCityWeekForecast([name, coords]));
     }
 
     return(
@@ -32,14 +34,14 @@ const City: React.FC<cityProps> = (props) => {
                  onClick={handleMoreStatus}>
                 <div className={`city_mini ${(screenWidth < 576 && isMoreShown) ? 'city_mini-active' : ''}`}>
                     <div className="city_info">
-                        <img src={sunny} alt="status" />
-                        <div> {name}
-                              <h3>{time}</h3>
+                        <img src={selectImageByCode(weathercode)[0]} alt="status" />
+                        <div> 
+                            {name}
                         </div>
                     </div>
-                    <div className="city_temp">{temp}&#176;</div>
+                    <div className="city_temp">{temperature}&#176;</div>
                 </div>
-                {(screenWidth < 576 && isMoreShown && currentPage !== 'Map') ? <CityForecast/> : null}
+                {(screenWidth < 576 && isMoreShown && currentPage !== 'Map') ? <CityForecast cities={cities}/> : null}
             </div>
     )
 }

@@ -8,6 +8,7 @@
         position: relative;
     }
     .search {
+        position: relative;
         width: 100%;
         input {
             width: 100%;
@@ -16,9 +17,42 @@
             height: 40px;
             border-radius: 12px;
             background-color: rgb(32, 43, 59);
-            padding-left: 10px;
-            font-size: 14px;
+            padding-left: 20px;
+            font-size: 16px;
             font-weight: 400;
+            &:focus {
+                background-color: #fff;
+                font-weight: 600;
+            }
+        }
+        .active{
+            border-radius: 12px 12px 0 0;
+            font-weight: 600;
+            background-color: #fff;
+        }
+        .matchBox {
+            border-radius: 0 0 12px 12px;
+            padding: 0 10px 10px 10px;
+            position: absolute;
+            z-index: 20;
+            overflow-y: auto;
+            width: 100%;
+            background-color: #ffffff;
+            li {
+                cursor: pointer;
+                display: block;
+                border-radius: 10px;
+                font-size: 16px;
+                padding: 5px 10px;
+                font-weight: 600;
+                list-style-type: none;
+                span {
+                    color: rgba(#000000, 0.4);
+                }
+                &:hover {
+                    background-color: #efefef;
+                }
+            }
         }
     }
 }

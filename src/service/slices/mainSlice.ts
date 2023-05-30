@@ -4,7 +4,7 @@ import type { MapData, Settings, Toggle, SettingsProp, ToggleProp} from "./mainS
 
 export type Point = {lat: number, long:number}
 type Unit = {objProp: SettingsProp, value: string}
-
+type permissions = "granted" | "prompt" | 'denied';
 
 
 
@@ -14,6 +14,7 @@ export interface WeatherState {
     settings: Settings;
     toggle: Toggle;
     screenWidth: number;
+    locationPermission: permissions;
 }
 
 
@@ -37,6 +38,7 @@ const initialState: WeatherState = {
         location: false
     },
     screenWidth: 1280,
+    locationPermission: "prompt",
 }
 
 
@@ -55,7 +57,13 @@ const mainSlice = createSlice({
         },
         changeScreenWidth: (state, action: PayloadAction<number>) => {
             state.screenWidth = action.payload;
-        }
+        },
+        changeLocationPermission: (state, action: PayloadAction<permissions>) => {
+            state.locationPermission = action.payload;
+        },
+        addMarkers: (state, action: PayloadAction<Point>) => {
+            state.map.markers = [...state.map.markers, action.payload]
+        },
     }
 })
 
@@ -63,7 +71,9 @@ const mainSlice = createSlice({
 export const {changeCurrentPage,
               changeUnit,
               toggleSwitcher,
-              changeScreenWidth} = mainSlice.actions;
+              changeScreenWidth,
+              changeLocationPermission,
+              addMarkers} = mainSlice.actions;
 
 
 export default mainSlice.reducer

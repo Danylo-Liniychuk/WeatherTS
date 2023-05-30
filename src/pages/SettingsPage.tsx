@@ -1,4 +1,4 @@
-import Nav from "../components/Navigation";
+import Search from "../components/SearchPanel";
 import Units from "../components/SettingsUnits";
 import Advertise from "../components/Advertising";
 import Switchers from "../components/Switchers";
@@ -9,10 +9,7 @@ const SettingsPage: React.FC = () => {
     return(
         <>
             <div className="contentBox">
-                <div className="search">
-                    {(screenWidth < 576) ? <Nav/> : null}
-                    <input type="text" placeholder="Search for cities"/>
-                </div>
+                <Search/>
                 <div className="settings_wrapper">
                     <Units/>
                     <Switchers/>

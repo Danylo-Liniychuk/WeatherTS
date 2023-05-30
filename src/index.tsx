@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './components/App';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { Provider } from 'react-redux';
 import store from './service/store/store'
 
@@ -14,3 +15,5 @@ root.render(
   </Provider>
 
 );
+
+serviceWorkerRegistration.register({});

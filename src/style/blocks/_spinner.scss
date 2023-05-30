@@ -13,6 +13,19 @@
         border-top-color: #fff;
         animation: spin 1s ease-in-out infinite;
         -webkit-animation: spin 1s ease-in-out infinite;
+        &-dark {
+          border: 3px solid rgba(0, 0, 0, 0.3);
+          border-top-color: #508EC3;
+
+        }
+    }
+    &_wrapper {
+      padding: 20px;
+      width: 98%;
+      height: 20%;
+      border-radius: 24px;
+      background-color: rgb(32, 43, 59);
+      margin-top: 15px;
     }
 }
 

@@ -1,36 +1,28 @@
-import Nav from "../components/Navigation";
+import Search from "../components/SearchPanel";
 import { v1 } from "uuid";
 import City from "../components/CityItem";
+import Spinner from "../components/Spinner";
 import CityForecast from "../components/CityForecast";
-import { useAppSelector } from "../service/hooks/reduxHooks";
+import { useAppSelector,useAppDispatch} from "../service/hooks/reduxHooks";
+import { fetchWeekForecast, fetchTodaysForecast, getCitiesLoading} from "../service/slices/forecastSlice";
+import { useEffect } from "react";
 
-
-export interface cityInfo {
-    name: string,
-    time: string,
-    temp:number
-}
 
 const CitiesPage: React.FC = () => {
-
-    const screenWidth = useAppSelector(state => state.mainReducer.screenWidth)
-    const data:Array<cityInfo> = [{name: "Madrid", time: '10:23', temp: 31},
-                  {name: "Madrid", time: '10:23', temp: 31},
-                  {name: "Madrid", time: '10:23', temp: 31},
-                  {name: "Madrid", time: '10:23', temp: 31},
-                  {name: "Madrid", time: '10:23', temp: 31}]
+    const screenWidth = useAppSelector(state => state.mainReducer.screenWidth),
+          cities = useAppSelector(state => state.forecastReducer.cities),
+          cityWeekLoading = useAppSelector(state => state.forecastReducer.cityWeekLoading);
     return(
         <>
             <div className={(screenWidth >=576) ? "contentBox contentBox-withoutJC": "contentBox"}>
-                <div className="search">
-                    {(screenWidth < 576) ? <Nav/> : null}
-                    <input type="text" placeholder="Search for cities"/>
-                </div>
-                <div className="city_wrapper">
-                    {data.map(el => <City data={el} key={v1()}/>)}
+                <Search/>
+                <div className={`city_wrapper ${(cities.length > 0) ? '' : 'city_wrapper-empty'}`}>
+                    {(cities.length > 0) ? 
+                            cities.map(el => <City name={el.name} temperature={el.temperature} weathercode={el.weathercode} coords={el.coords} cities={cities} key={v1()}/>) :
+                            <span>Your list of cities is empty</span>}
                 </div>
             </div>
-            {(screenWidth >=576) ? <CityForecast/> : null}
+            {(screenWidth <= 576) ? null : <CityForecast cities={cities}/>}
         </>
     )
 }

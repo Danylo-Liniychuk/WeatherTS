@@ -6,6 +6,15 @@
         height: 100%;
         overflow-y: auto;
         @include scroll;
+        &-empty{
+            background-color: rgb(32, 43, 59);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            color: #fff;
+        }
     }
     &_mini {
         width: 100%;
@@ -23,6 +32,7 @@
         height: 25%;
         border-radius: 24px;
         background-color: rgb(32, 43, 59);
+        cursor: pointer;
         &:first-child {
             margin-top: 0;
         }
@@ -48,6 +58,8 @@
         div{
             color: rgb(196, 202, 211);
             font-size: 32px;
+            display: flex;
+            align-items: center;
             font-weight: 600;
         }
         h3 {
@@ -63,6 +75,8 @@
     &_temp {
         color: rgb(196, 202, 211);
         font-size: 40px;
+        display: flex;
+        align-items: center;
     }
 
 }

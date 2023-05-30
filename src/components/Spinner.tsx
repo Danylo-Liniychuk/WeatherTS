@@ -1,9 +1,12 @@
 
+interface SpinnerProps{
+    dark: boolean
+}
 
-const Spinner: React.FC = () => {
+const Spinner: React.FC<SpinnerProps> = (props) => {
     return (
         <div className="spinner">
-            <div className="spinner_item"></div>
+            <div className={`spinner_item ${props.dark ? 'spinner_item-dark' : ''}`}></div>
         </div>
     )
 }

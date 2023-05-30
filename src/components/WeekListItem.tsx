@@ -1,21 +1,20 @@
-
+import { selectImageByCode } from "../service/helpers";
 
 interface props {
-    data: [string, number, number] ///вернуть weekTuple
+    data: [string, number, number, number] ///вернуть weekTuple
 }
 
 const WeekListItem:React.FC<props> = (props) => {
-
-
-    const [day, maxTemp, minTemp] = props.data;
+    const [day, maxTemp, minTemp, weatherCode] = props.data;
+    const image = selectImageByCode(weatherCode);
 
     return (
         <>
             <div className="weekForecast_item">
                 <div className='weekForecast_day'>{day}</div>
                 <div className="weekForecast_status">
-                    <img src={'https://res.cloudinary.com/dphnruwkk/image/upload/v1685096835/weather_icons/reshot-icon-rain-548NGEBKCJ_vvjdwj.svg'} alt="status"/>
-                    Sunny
+                    <img src={image[0]} alt="status"/>
+                    {image[1]}
                 </div>
                 <div className="weekForecast_temp"><span>{maxTemp}</span>/{minTemp}</div>
             </div>

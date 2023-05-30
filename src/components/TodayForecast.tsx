@@ -5,8 +5,8 @@ import { useAppSelector } from "../service/hooks/reduxHooks"
 
 export interface TodayForecastProps {
     time: Array<string>;
-    temperature: Array<number>;
-    weatherCode: Array<number>;
+    temperature: Array<number> ;
+    weatherCode: Array<number> ;
 
 }
 
