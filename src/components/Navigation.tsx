@@ -16,8 +16,8 @@ const Nav: React.FC = () => {
     const data: Array<itemTuple> = [[Weather, 'Weather'],
                                     [Cities, 'Cities'],
                                     [Map, 'Map'],
-                                    [Settings, 'Settings'],
-                                    [Graph, 'Stats']];
+                                    [Graph, 'Stats'],
+                                    [Settings, 'Settings']];
 
     const dispatch = useAppDispatch();
     const currentPage = useAppSelector(state => state.mainReducer.currentPage);

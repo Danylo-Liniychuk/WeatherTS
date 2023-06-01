@@ -14,6 +14,9 @@ export interface SeasonWeatherResponse {
         time: string[];
         temperature_2m_max: number[];
         temperature_2m_min: number[];
+        weathercode: number[];
+        precipitation_sum: number[];
+        precipitation_hours: number[];
     }
 }
 

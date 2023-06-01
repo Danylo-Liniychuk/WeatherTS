@@ -9,7 +9,8 @@ import type { SeasonWeather } from "../../service/slices/statsSliceTypes";
 const SeasonChart: React.FC = () => {
     const [data, setData] = useState<SeasonWeather>();
     const dispatch = useAppDispatch();
-    const name = useAppSelector(state => state.forecastReducer.city);
+    const defaultName = useAppSelector(state => state.forecastReducer.city);
+    const name = useAppSelector(state => state.statsReducer.name);
     const loading = useAppSelector(state => state.statsReducer.seasonWeatherLoading);
     const values = useAppSelector(state => state.statsReducer.seasonWeather)
 
@@ -21,7 +22,7 @@ const SeasonChart: React.FC = () => {
     }, [loading])
     return(
         <div className="chart_wrapper">
-            <h2>{name}</h2>
+            <h2>{name.length > 1 ? name : defaultName}</h2>
             <h3>Max and min temperatures for the last 3 month</h3>
                 <div className="chart_graph">
                     {loading || !data

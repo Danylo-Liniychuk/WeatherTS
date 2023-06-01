@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 import type { Point } from "../service/slices/mainSlice";
 import { fetchAutoComplete, cleanMatches, addSearchPanelCoords} from "../service/slices/geocodingSlice";
 import { fetchOneCityForecast } from "../service/slices/forecastSlice";
+import { fetchSeasonWeather } from "../service/slices/statsSlice";
 import { v1 } from "uuid";
 import { addGeolocation} from '../service/slices/forecastSlice';
 import Nav from "./Navigation";
@@ -34,6 +35,8 @@ const Search: React.FC = () => {
             dispatch(fetchOneCityForecast([name, coords]))
         } else if (currentPage === "Map") {
             dispatch(addSearchPanelCoords({lat: coords.lat, lng: coords.long}))
+        } else if (currentPage === 'Stats'){
+            dispatch(fetchSeasonWeather({coords, name}))
         }
         setText('')
     }
