@@ -6,6 +6,7 @@ import CitiesPage from '../pages/CitiesPage';
 import SettingsPage from '../pages/SettingsPage';
 import Nav from './Navigation';
 import MapPage from '../pages/MapPage';
+import StatsPage from '../pages/StatsPage';
 import { changeScreenWidth, changeLocationPermission } from '../service/slices/mainSlice';
 import { addGeolocation } from '../service/slices/forecastSlice';
 import type { Point } from '../service/slices/mainSlice';
@@ -80,6 +81,7 @@ function App() {
       {(currentPage === 'Cities') ? <CitiesPage/> : null}
       {(currentPage === 'Map') ? <MapPage/> : null}
       {(currentPage === 'Settings') ? <SettingsPage/> : null}
+      {(currentPage === "Stats") ? <StatsPage/> : null}
     </div>
   );
 }

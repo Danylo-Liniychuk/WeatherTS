@@ -3,6 +3,7 @@ import {ReactComponent as Cities} from '../assets/navigation/list_icon.svg';
 import {ReactComponent as Map} from '../assets/navigation/map_icon.svg';
 import {ReactComponent as Settings} from '../assets/navigation/settings_icon.svg';
 import {ReactComponent as Weather} from '../assets/navigation/weather_icon.svg';
+import {ReactComponent as Graph} from '../assets/navigation/graph.svg'
 import { useAppDispatch, useAppSelector} from '../service/hooks/reduxHooks';
 import { changeCurrentPage} from '../service/slices/mainSlice';
 import {useState} from 'react'
@@ -15,7 +16,8 @@ const Nav: React.FC = () => {
     const data: Array<itemTuple> = [[Weather, 'Weather'],
                                     [Cities, 'Cities'],
                                     [Map, 'Map'],
-                                    [Settings, 'Settings']];
+                                    [Settings, 'Settings'],
+                                    [Graph, 'Stats']];
 
     const dispatch = useAppDispatch();
     const currentPage = useAppSelector(state => state.mainReducer.currentPage);
@@ -47,9 +49,12 @@ const Nav: React.FC = () => {
 
                 <>{data.map((item, pos) => listItemCreator(item[0], item[1], pos))}</>: 
 
-                <div className={(isMenuOpen)? "navigation__list navigation__list--active": "navigation__list"}>
-                    {data.map((item, pos) => listItemCreator(item[0], item[1], pos))}
-                </div>
+                <>
+                    <div className={(isMenuOpen)? "navigation__list navigation__list--active": "navigation__list"}>
+                        {data.map((item, pos) => listItemCreator(item[0], item[1], pos))}
+                    </div>
+                    {(isMenuOpen) ? <div className='back'></div> : null}
+                </>
                 }
             </nav>
         </>

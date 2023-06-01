@@ -7,9 +7,16 @@
         justify-content: flex-start;
         position: relative;
     }
+    &-charts {
+        justify-content: flex-start;
+        width: 92%;
+    }
     .search {
-        position: relative;
         width: 100%;
+        &_wrapper {
+            width: 100%;
+            position: relative;
+        }
         input {
             width: 100%;
             outline: none;

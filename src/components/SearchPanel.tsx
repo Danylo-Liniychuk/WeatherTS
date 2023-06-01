@@ -40,12 +40,14 @@ const Search: React.FC = () => {
     return(
         <div className='search'>
             {(screenWidth < 576) ? <Nav/> : null}
-            <input className={(matches && matches.length > 0) ? 'active' : '' } type="text" placeholder="Search for cities" value={text} onChange={handleChange}/>
-            {(matches && matches.length > 0) ? 
-                <div className="matchBox">
-                        {matches.map(el => <li onClick={() => handleClick(el.display_place, el.coords)} key={v1()}>{el.display_place}<br/><span>{el.display_name}</span></li>)}
-                </div>
-            : null}
+            <div className="search_wrapper">
+                <input className={(matches && matches.length > 0) ? 'active' : '' } type="text" placeholder="Search for cities" value={text} onChange={handleChange}/>
+                {(matches && matches.length > 0) ? 
+                    <div className="matchBox">
+                            {matches.map(el => <li onClick={() => handleClick(el.display_place, el.coords)} key={v1()}>{el.display_place}<br/><span>{el.display_name}</span></li>)}
+                    </div>
+                : null}
+            </div>
         </div>
     )
 }

@@ -32,7 +32,7 @@ const CityForecast: React.FC<CityForecastProps> = (props) => {
             dispatch(fetchOneCityWeekForecast([props.cities[0].name, props.cities[0].coords]))
         }
     }, [props.cities])
-
+    console.log(time)
     return(
         <div className="cityForecast">
             {weekForecastLoading ? 
@@ -45,7 +45,7 @@ const CityForecast: React.FC<CityForecastProps> = (props) => {
                 {(screenWidth < 576) ? null :<div className="divider-city"></div>}
                 {(hourlyCity.time.length > 0) ? 
                 <Today time={cityTime} temperature={hourlyCity.temperature_2m} weatherCode={hourlyCity.weathercode} />:
-                <Today time={time} temperature={hourly.temperature_2m} weatherCode={hourly.weathercode} />}
+                <Today time={time.slice(0,3)} temperature={hourly.temperature_2m.slice(0,3)} weatherCode={hourly.weathercode.slice(0,3)} />}
                 
                 <div className="divider-city"></div>
                 <Week daily={dailyCity.time[0] ? dailyCity : daily}/>

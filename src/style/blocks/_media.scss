@@ -1,4 +1,4 @@
-$ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+$ease: all .5s ease-in-out;
 
 @media (max-width: 992px) {
     .navigation{
@@ -86,6 +86,9 @@ $ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 .city_temp {
                     font-size: 30px;
                 }
+            }
+            span {
+                text-align: center;
             }
 
         }
@@ -197,6 +200,10 @@ $ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         &_wrapper{
             width: 100%;
+            span {
+                display: block;
+                text-align: center;
+            }
         }
     }
     .map {
@@ -204,43 +211,47 @@ $ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         z-index: 1;
         &_forecast {
             width: 100%;
+            min-height: 30%;
             align-items:baseline;
         }
         &_wrapper {
             margin-top: 20px;
-            min-height: 60%;
+            min-height: 80%;
             padding: 0;
             overflow-y:visible;
             .city_item-map {
                 width: 100%;
-                height: 17%;
+                height: 18vh;
                 .city_info {
-                    width: 60%;
-                    justify-content: space-between;
+                    width: 70%;
+                    justify-content: flex-start;
                     div {
-                        font-size: 30px;
+                        font-size: 24px;
                     }
                 }
                 .city_temp {
-                    font-size: 36px;
+                    font-size: 28px;
                 }
+            }
+            span {
+                text-align: center;
             }
         }
     }
     .cityForecast{
         &_wrapper {
-            padding: 0 20px 0 0;
+            padding: 0;
         }
         .total_temperature {
-            font-size: 34px;
+            font-size: 26px;
         }
         .weekForecast {
             min-height: 30%;
             &_status {
-                width: 40%;
+                width: 50%;
                 font-size: 12px;
                 img{
-                    margin-right: 0;
+                    margin-right: 5px;
                     width: 30%;
                 }
             }
@@ -266,7 +277,7 @@ $ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
                 }
             }
             img {
-                height: 50%;
+                height: 35%;
             }
         }
     }
@@ -322,7 +333,7 @@ $ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             top: 10px;
             z-index: 10;
             display: flex;
-            height: 98%;
+            height: 98vh;
             width: 25%;
             border-radius: 24px;
             background-color: rgb(32, 43, 59);
@@ -331,8 +342,18 @@ $ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform: translate(-150%, 0);
             transition: $ease;
             &--active {
+              position: fixed;
               transform: translate(0, 0);
             }
+        }
+        .back {
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            background-color: rgba(0,0,0,.5);
+            top: 0;
+            left: 0;
+            position:absolute;
         }
     }
     .air {
@@ -358,23 +379,14 @@ $ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
     .contentBox{
         width: 100%;
-        padding-right: 1%;
+        padding-right: 0;
         overflow-y: auto;
         @include hiddenScroll;
         .search {
             display: flex;
             input {
-                width: 80%;
+                width: 100%;
             }
-        }
-        .back {
-            width: 100%;
-            height: 100%;
-            z-index: 2;
-            background-color: rgba(0,0,0,.5);
-            top: 0;
-            left: 0;
-            position: absolute;
         }
     }
     .forecast {
@@ -404,8 +416,11 @@ $ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         &_wrapper {
             width: 101%;
         }
+        &_item {
+            padding: 20px 15px 20px 15px;
+        }
         &_mini {
-            height: 20%;
+            height: 100%;
         }
         &_info {
             img {
@@ -413,7 +428,12 @@ $ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             }
         }
         &_item {
-            transition: height 0.5s ease-in-out;;
+            transition: height 0.5s ease-in-out;
+            &-map {
+                .city_mini {
+                    height: 100%;
+                }
+            }
             &-active {
                 height: 90%;
             }
@@ -458,6 +478,17 @@ $ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             }
         }
     }
+    .settings{
+        &_wrapper {
+            &::-webkit-scrollbar-track {
+                background-color: transparent;
+            }
+            &::-webkit-scrollbar-thumb {
+                background-color: transparent;
+            }
+            padding-right: 0;
+        }
+    }
 }
 @media (max-width: 400px) {
     .advertise {
@@ -466,3 +497,19 @@ $ease: all .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
     }
 }
+@media(max-width:350px) {
+    .total {
+        &_forecast{
+            h2{
+                font-size: 28px;;
+            }
+        }
+        &_temperature {
+            font-size: 30px;
+        }
+        img {
+            height: 70%;
+        }
+    }
+}
+    
