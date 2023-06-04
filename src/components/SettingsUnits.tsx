@@ -12,9 +12,9 @@ export interface RadioData{
 const Units: React.FC = () => {
     const temperature: Array<RadioData> = [{name:'Celsius', val: 'celsius'},
                                            {name:'Fahrenheit', val: 'fahrenheit'}],
-          wind: Array<RadioData> = [{name:'km/h', val: 'km/h'},
-                                    {name:'m/s', val: 'm/s'},
-                                    {name:'Knots', val: 'Knots'}],
+          wind: Array<RadioData> = [{name:'km/h', val: 'kmh'},
+                                    {name:'m/s', val: 'ms'},
+                                    {name:'Knots', val: 'kn'}],
           pressure: Array<RadioData> =  [ {name:'hPa', val: 'hPa'},
                                           {name:'Inches', val: 'inch'},
                                           {name:'kPa', val: 'kPas'},
@@ -29,7 +29,7 @@ const Units: React.FC = () => {
             <h2>Units</h2>
             <div className="settings_units">
                 <UnitItem title="Temperature" data={temperature} key={v1()} active={[settings.temperature, "temperature"]}/>
-                <UnitItem title="Wind Speed`" data={wind} key={v1()} active={[settings.speed, "speed"]}/>
+                <UnitItem title="Wind Speed" data={wind} key={v1()} active={[settings.speed, "speed"]}/>
                 <UnitItem title="Pressure" data={pressure} key={v1()} active={[settings.pressure, "pressure"]}/>
                 <UnitItem title="Precipitation" data={precipitation} key={v1()} active={[settings.precipitation, "precipitation"]}/>
                 <UnitItem title="Distance" data={distance} key={v1()} active={[settings.distance, "distance"]}/>

@@ -19,6 +19,10 @@
     }
 }
 
+body {
+    touch-action: none;
+}
+
 
 .App {
     background-color: rgb(11, 19, 30);
@@ -28,6 +32,7 @@
     width: 100%;
     justify-content: space-between;
     box-sizing: border-box;
+    touch-action: none;
 }
 
 

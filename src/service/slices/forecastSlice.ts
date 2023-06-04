@@ -61,7 +61,8 @@ export const fetchWeekForecast = createAsyncThunk<WeekForecastResponse, void, {s
     async (_, thunkAPI) => {
         const state = thunkAPI.getState();
         const coords = state.forecastReducer.geolocation;
-        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords?.lat}&longitude=${coords?.long}&forecast_days=7&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=Europe/Moscow`);
+        const temperature = state.mainReducer.settings.temperature;
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords?.lat}&longitude=${coords?.long}&forecast_days=7&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=Europe/Moscow&temperature_unit=${temperature}`);
         return await response.json() as WeekForecastResponse;
     }
 )
@@ -71,8 +72,9 @@ export const fetchTodaysForecast = createAsyncThunk<MainPageForecast, void, {sta
     async(_, thunkAPI) => {
         const state = thunkAPI.getState(),
               coords = state.forecastReducer.geolocation,
-              apikey = state.forecastReducer.geocodingAPIkey;
-        const response1 = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords?.lat}&longitude=${coords?.long}&forecast_days=2&hourly=temperature_2m,weathercode&timezone=Europe/Moscow&current_weather=true&daily=apparent_temperature_max,windspeed_10m_max,uv_index_max,precipitation_probability_mean`);
+              apikey = state.forecastReducer.geocodingAPIkey,
+              {temperature, speed} = state.mainReducer.settings;
+        const response1 = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords?.lat}&longitude=${coords?.long}&forecast_days=2&hourly=temperature_2m,weathercode&timezone=Europe/Moscow&current_weather=true&daily=apparent_temperature_max,windspeed_10m_max,uv_index_max,precipitation_probability_mean&temperature_unit=${temperature}&windspeed_unit=${speed}`);
         const data1 = await response1.json();
         const response2 = await fetch(`https://us1.locationiq.com/v1/reverse?key=${apikey}&lat=${coords?.lat}&lon=${coords?.long}&format=json&accept-language=en`)
         const data2 = await response2.json();
@@ -80,10 +82,11 @@ export const fetchTodaysForecast = createAsyncThunk<MainPageForecast, void, {sta
     }
 )
 
-export const fetchOneCityForecast = createAsyncThunk<[OneDayForecastResponse, string], [string, Point], {rejectValue: string}>(
+export const fetchOneCityForecast = createAsyncThunk<[OneDayForecastResponse, string], [string, Point], {rejectValue: string, state: RootState}>(
     'forecast/fetchCityForecast',
-    async(data, {rejectWithValue}) => {
-        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${data[1].lat}&longitude=${data[1].long}&timezone=Europe/Moscow&current_weather=true`);
+    async(data, {rejectWithValue, getState}) => {
+        const {temperature} = getState().mainReducer.settings;
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${data[1].lat}&longitude=${data[1].long}&timezone=Europe/Moscow&current_weather=true&temperature_unit=${temperature}`);
         if(!response.ok) {
             return rejectWithValue('Error in city fetch')
         }
@@ -92,10 +95,11 @@ export const fetchOneCityForecast = createAsyncThunk<[OneDayForecastResponse, st
     }
 )
 
-export const fetchOneCityWeekForecast = createAsyncThunk<[WeekForecastResponse, string], [string, Point], {rejectValue: string}>(
+export const fetchOneCityWeekForecast = createAsyncThunk<[WeekForecastResponse, string], [string, Point], {rejectValue: string, state: RootState}>(
     'forecast/fetchCityWeekForecast',
-    async(data, {rejectWithValue}) => {
-        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${data[1].lat}&longitude=${data[1].long}&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_mean&timezone=Europe/Moscow&forecast_days=3&current_weather=true&hourly=temperature_2m,weathercode`);
+    async(data, {rejectWithValue, getState}) => {
+        const {temperature} = getState().mainReducer.settings;
+        const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${data[1].lat}&longitude=${data[1].long}&daily=temperature_2m_max,temperature_2m_min,weathercode,precipitation_probability_mean&timezone=Europe/Moscow&forecast_days=3&current_weather=true&hourly=temperature_2m,weathercode&temperature_unit=${temperature}`);
         if(!response.ok) {
             return rejectWithValue('Error in city weak forecast fetch')
         }

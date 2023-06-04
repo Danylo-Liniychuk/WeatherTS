@@ -2,10 +2,8 @@ import SwitcherItem from "./SwitchersItem"
 import { useAppSelector } from "../service/hooks/reduxHooks"
 
 
-
 const Switchers: React.FC = () => {
     const {location,time,notifications} = useAppSelector(state => state.mainReducer.toggle);
-
 
     return(
         <>

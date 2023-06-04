@@ -40,9 +40,11 @@ export const fetchAutoComplete = createAsyncThunk<Array<AutoCompleteResponse>, s
 export const fetchMarkerForecast = createAsyncThunk<[ReverseGeocodingResponse,OneDayForecastResponse, LatLngLiteral], LatLngLiteral, {rejectValue: string, state: RootState}>(
     'geocoding/fetchMarkerWeather',
     async (coords, {rejectWithValue, getState}) => {
-        const key = getState().geocodingReducer.apiKey;
+        const state = getState();
+        const key = state.geocodingReducer.apiKey,
+              {temperature} = state.mainReducer.settings;
         const response1 = await fetch(`https://us1.locationiq.com/v1/reverse?key=${key}&lat=${coords.lat}&lon=${coords.lng}&format=json&accept-language=en`);
-        const response2 = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lng}&timezone=Europe/Moscow&current_weather=true`);
+        const response2 = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${coords.lat}&longitude=${coords.lng}&timezone=Europe/Moscow&current_weather=true&temperature_unit=${temperature}`);
         if(!response1.ok && !response2.ok) {
             return rejectWithValue('Error in fetchMarkerForecast')
         }

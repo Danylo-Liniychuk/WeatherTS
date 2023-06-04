@@ -30,19 +30,10 @@
 
     }
     &_doughnut {
-        height: 90%;
+        height: 95%;
+        width: 33%;
         position: relative;
         display: flex;
         justify-content: flex-end;
     }
-    &_title {
-        position: absolute;
-        top: 50%;
-        right: 50%;
-        transform: translate(50%, -50%);
-        text-align: center;
-        font-size: 14px;
-        color: rgb(221, 224, 228);
-    }
-
 }

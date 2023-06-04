@@ -1,8 +1,7 @@
 import { useAppDispatch } from "../service/hooks/reduxHooks";
 import { toggleSwitcher } from "../service/slices/mainSlice";
-
 import type { ToggleProp } from "../service/slices/mainSliceTypes";
-
+import {useEffect} from 'react'
 
 interface SwitcherProps {
     switchStatus: boolean,

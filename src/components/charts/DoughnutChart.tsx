@@ -1,41 +1,74 @@
-import { Chart as ChartJS, ArcElement, CoreChartOptions} from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
-import { selectImageByCode } from '../../service/helpers';
-
-ChartJS.register(ArcElement);
-
+import { Chart, ArcElement} from 'chart.js';
+import { Doughnut} from 'react-chartjs-2';
+import { useEffect } from 'react';
 
 interface DoughnutProps {
-  data: number[];
+  dataset: number[];
+  title: string;
+  labels: string[];
+  label: string;
+  position: 'bottom' | 'top' | 'right' | 'left';
+  legend: boolean;
 }
 
-interface ObjData {
-  [key: number | string]: number;
-}
 
+Chart.register(ArcElement)
 const DoughnutChart: React.FC<DoughnutProps> = (props) => {
-  let obj: ObjData = {};
-  const dataSort = (data: Array<string | number>) => {
-    data.forEach((el) => {
-      obj.hasOwnProperty(el) ? obj[el]++ : obj[el] = 1; 
-    })
-  }
-  const secondDataSort = () => {
-    const final:ObjData = {};
-    for(let key in obj) {
-      const alias = selectImageByCode(+key)[1];
-      final?.[alias] ? final[alias] += +obj[key] : final[alias] = +obj[key]
+  const {dataset, label, labels, title, legend} = props
+  useEffect(() => {
+    // Кастомный плагин для вывода текста в центре графика
+    const centerTextPlugin = {
+      id: 'centerTextPlugin',
+      afterDraw: (chart: any) => {
+          if (chart.config.type === 'doughnut') { // Проверка типа графика
+            const {width, height, ctx } = chart;
+            const { text, fontSize, fontColor, lineHeight, position} = chart.options.centerText; // Получаем настройки текста из опций графика// Получаем первый элемент легенды
+            const textWidth = chart.legend.width; // Ширина легенды с дополнительным отступом
+  
+            ctx.restore();
+            ctx.font = `${fontSize}px Arial`;
+            ctx.fillStyle = fontColor;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+  
+            // Разбиваем текст на две строки по первому пробелу
+            const words = text.split(' ');
+            const line1 = words[0];
+            const line2 = words.slice(1).join(' ');
+
+            // Позиционируем текст с учетом ширины легенды
+            let textX
+            if(position === 'left') {
+              textX = width / 2 + textWidth / 2;
+            } else if (position === "bottom"){
+              textX = width / 2;
+            } else {
+              textX = width / 2 - textWidth / 2;
+            }
+            const textY1 = position === 'bottom' ? height / 2 - 25 : height / 2 - lineHeight;
+            const textY2 = position === 'bottom' ? height / 2 - 5 : height / 2 + 10;
+            // Выводим текст на две строки с учетом переноса
+            ctx.fillText(line1, textX, textY1);
+            ctx.fillText(line2, textX, textY2);
+            ctx.save();
+          }
+      },
     }
-    obj = final
-  }
-  dataSort(props.data);
-  secondDataSort();
+    // Регистрация плагина
+    Chart.register(centerTextPlugin);
+
+    return () => {
+      // Удаление плагина при размонтировании компонента
+      Chart.unregister(centerTextPlugin);
+    };
+  }, []);
+
   const data = {
-      labels: Object.keys(obj),
+      labels: labels,
       datasets: [
         {
-          label: 'Days',
-          data: Object.values(obj),
+          label: label,
+          data: dataset,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -56,29 +89,37 @@ const DoughnutChart: React.FC<DoughnutProps> = (props) => {
         },
       ],
     };
-    const position: 'chartArea' = 'chartArea' 
     const align: 'center' = 'center'
     const options = {
       maintainAspectRatio:false,
+      centerText: {
+        text: title, 
+        fontSize: 14,
+        fontColor: 'rgba(221, 224, 228, 0.8)',
+        lineHeight: 10,
+        position: props.position
+      },
       plugins: {
         legend: {
-          display: true,
-          position: position,
+          maxWidth: 70,
+          maxHeight: props.position === 'bottom' ? 25 : undefined,
+          fullSize: false,
+          display: legend,
+          position: props.position,
           align: align,
           labels: {
             usePointStyle: true,
             color: 'rgba(221, 224, 228, .5)',
-          }
+          },
         },
         title: {
           display: false
-          }
+        }
        }
     }
     return(
         <>
-          <Doughnut data={data} options={options}/>
-          <div className='chart_title'>Weather<br/>conditions</div>
+          <Doughnut data={data} options={options} />
         </>
     )
 }

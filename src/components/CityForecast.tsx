@@ -32,7 +32,6 @@ const CityForecast: React.FC<CityForecastProps> = (props) => {
             dispatch(fetchOneCityWeekForecast([props.cities[0].name, props.cities[0].coords]))
         }
     }, [props.cities])
-    console.log(time)
     return(
         <div className="cityForecast">
             {weekForecastLoading ? 

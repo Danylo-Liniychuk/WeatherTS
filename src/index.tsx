@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 import App from './components/App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { Provider } from 'react-redux';
-import store from './service/store/store'
+import store, {persister} from './service/store/store'
+import { PersistGate } from 'redux-persist/integration/react';
 
 
 const root = ReactDOM.createRoot(
@@ -11,7 +12,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <Provider store={store}>
-    <App />
+    <PersistGate loading={null} persistor={persister}>
+      <App/>
+    </PersistGate>
   </Provider>
 
 );

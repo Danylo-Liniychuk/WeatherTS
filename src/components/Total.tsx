@@ -11,6 +11,7 @@ interface TotalProps{
 
 const Total: React.FC<TotalProps> =  (props) => {
     const currentPage = useAppSelector(state => state.mainReducer.currentPage);
+
     const {name, probability, temperature, weatherCode} = props;
     const image = (typeof weatherCode === 'number') ? selectImageByCode(weatherCode) : [] ;
     return(

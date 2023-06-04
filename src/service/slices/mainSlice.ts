@@ -27,7 +27,7 @@ const initialState: WeatherState = {
     },
     settings: {
         temperature: 'celsius',
-        speed: 'km/h',
+        speed: 'kmh',
         pressure: 'mm',
         precipitation:'mm',
         distance: 'km',

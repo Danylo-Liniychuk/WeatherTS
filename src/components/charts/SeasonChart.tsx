@@ -12,7 +12,7 @@ const SeasonChart: React.FC = () => {
     const defaultName = useAppSelector(state => state.forecastReducer.city);
     const name = useAppSelector(state => state.statsReducer.name);
     const loading = useAppSelector(state => state.statsReducer.seasonWeatherLoading);
-    const values = useAppSelector(state => state.statsReducer.seasonWeather)
+    const values = useAppSelector(state => state.statsReducer.seasonWeather);
 
     useEffect(() => {
         if(!loading) {

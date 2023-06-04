@@ -1,9 +1,14 @@
 
 import { useAppSelector } from "../service/hooks/reduxHooks";
 
+interface AliasObj  {
+    [key: string]: string
+} 
 
 const Air: React.FC = () => {
     const additional = useAppSelector(state => state.forecastReducer.currentAdditional);
+    const speed = useAppSelector(state => state.mainReducer.settings.speed);
+    const speedAlias: AliasObj = {kmh: 'km/h', ms: 'm/s', kn: 'knots'}
     return (
         <div className="air">
             <div className="air_header">
@@ -24,7 +29,7 @@ const Air: React.FC = () => {
                 <div className="air_block">
                     <div className="air_item">
                         <div className="air_title air_title-wind">Wind</div>
-                        <div className="air_value">{additional?.windspeed_10m_max[0]} km/h</div>
+                        <div className="air_value">{additional?.windspeed_10m_max[0]} {speedAlias[speed]}</div>
                     </div>
                     <div className="air_item">
                         <div className="air_title air_title-sun">UV Index</div>

@@ -113,8 +113,30 @@ $ease: all .5s ease-in-out;
             font-size: 32px;
         }
     }
-    
+    .contentBox-charts {
+        width: 90%;
+    }
 }
+
+@media (max-width: 890px) {
+    .contentBox-charts {
+        overflow-y: auto;
+    }
+    .chart {
+        &_wrapper{
+            &-flex{
+                min-height: 80%;
+                flex-wrap: wrap;
+                justify-content: space-around;
+            }
+        }
+        &_doughnut {
+            height: 45%;
+            width: 45%;
+        }
+    }
+}
+
 @media (max-width: 768px) {
     .App {
         padding: 10px 10px 10px 10px !important;
@@ -395,7 +417,7 @@ $ease: all .5s ease-in-out;
             font-size: 22px;
         }
         &_time {
-            font-size: 12px;
+            font-size: 14px;
         }
         .divider {
             &:nth-child(2), &:nth-child(4){
@@ -404,7 +426,7 @@ $ease: all .5s ease-in-out;
         }
         &_item{
             img{
-                height: 33%;
+                height: 45%;
             }
             &:nth-child(1), &:nth-child(3)  {
                 display: none;
@@ -489,7 +511,27 @@ $ease: all .5s ease-in-out;
             padding-right: 0;
         }
     }
+    .chart {
+        &_wrapper{
+            min-height: 60%;
+            &-flex{
+                min-height: 100%;
+                flex-direction: column;
+                justify-content: space-between;
+                flex-wrap: nowrap;
+            }
+        }
+        &_doughnut {
+            height: 33%;
+            width: 60%;
+        }
+    }
 }
+
+
+
+
+
 @media (max-width: 400px) {
     .advertise {
         &_desc, .sign_button  {

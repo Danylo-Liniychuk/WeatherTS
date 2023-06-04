@@ -25,8 +25,10 @@ const Map: React.FC = () => {
     return(
         <MapContainer  center={totalCoords()} zoom={11} maxZoom={11} className='map' doubleClickZoom={false}>
             <TileLayer zIndex={1}
-            attribution='&copy; <a href="http://osm.org/copyright%22%3EOpenStreetMap</a> contributors'  
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution={`
+            © Esri
+          `}  
+            url="https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=b2b27189f78f4762915c6b6e1f086bed"
             />
             <MyMap/>
             <MapView/>
